@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-
+import Link from "next/link";
 export default function Home() {
   return (
     <>
@@ -10,12 +10,21 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ea
-        voluptatem ipsam enim voluptates quidem animi, quos nemo harum vel?
-        Molestias laborum autem error doloremque sunt necessitatibus sit
-        nesciunt non.
-      </main>
+      <header>
+        <Link href="/">Home</Link>
+        <Link href="/property">Property list</Link>
+        <Link
+          href={{
+            pathname: "/property/[slug]",
+            query: {
+              slug: "abc-land",
+            },
+          }}
+        >
+          Property list
+        </Link>
+      </header>
+      <main>HomePage</main>
     </>
   );
 }
