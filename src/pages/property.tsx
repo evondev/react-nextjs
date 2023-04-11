@@ -1,7 +1,8 @@
+import { LayoutMain } from "@/components/layout";
 import React from "react";
 
 const PropertyPage = () => {
-  return <div>Property Page</div>;
+  return <LayoutMain>Property Page</LayoutMain>;
 };
 
 export default PropertyPage;
