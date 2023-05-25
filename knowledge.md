@@ -10,6 +10,18 @@
 - /user/admin/settings
 - /user/[username]/settings
 
+# next/image
+
+- Nên sử dụng next/image để hình ảnh được tối ưu
+- Thuộc tính `fill` và `width` `height` không được sử dụng chung với nhau
+- Khi sử dụng thuộc tính `fill` thì phần tử cha nên là `relative` `absolute` hoặc `fixed` tùy vào trường hợp cụ thể
+- Khi sử dụng static image import thì không cần phải dùng thêm thuộc tính `width` `height` bởi vì static image import có interface là StaticImageData(src, width, height)
+- Nên sử dụng thêm thuộc tính `sizes` để có thể xác định các kích thước của hình ảnh khác nhau tùy thuộc vào màn hình
+- quality: Chất lượng hình ảnh, mặc định là 75
+- priority: true -> dùng cho những tấm ảnh nằm trong viewport, khi sử dụng priority thì sẽ không sử dụng được loading="lazy"
+- Thêm loading="lazy" vào những tấm ảnh sẽ xuất hiện ở ngoài viewport, giúp trang web giảm tải việc load những tấm ảnh không cần thiết
+- Khi sử dụng placeholder="blur" thì static image import đã có sẵn, tuy nhiên đối với remote images thì phải tự xử lý thuộc tính blurDataURL với thư viện được next giới thiệu là plaiceholder
+
 # Fetching
 
 ## getStaticProps:

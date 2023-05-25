@@ -5,7 +5,7 @@ const nextConfig = {
     domains: ["images.unsplash.com"],
     formats: ["image/webp"],
     minimumCacheTTL: 60,
-    disableStaticImages: true,
+    // disableStaticImages: true,
   },
 };
 
