@@ -21,6 +21,10 @@
 - priority: true -> dùng cho những tấm ảnh nằm trong viewport, khi sử dụng priority thì sẽ không sử dụng được loading="lazy"
 - Thêm loading="lazy" vào những tấm ảnh sẽ xuất hiện ở ngoài viewport, giúp trang web giảm tải việc load những tấm ảnh không cần thiết
 - Khi sử dụng placeholder="blur" thì static image import đã có sẵn, tuy nhiên đối với remote images thì phải tự xử lý thuộc tính blurDataURL với thư viện được next giới thiệu là plaiceholder
+- onLoadingComplete: Chạy khi ảnh đã load xong rồi
+- onError: Chạy khi tấm ảnh bị lỗi không load được thì chúng ta có thể thiết lập 1 tấm ảnh mặc định gì đó
+- blurDataURL: Có thể dùng các hàm từ NextJS cung cấp để tối ưu hóa tốc độ tải trang, nếu yêu cầu đơn giản thì có thể dùng CSS blur và hàm onLoadingComplete để xử lý cho nó đẹp về UI
+-
 
 # Fetching
 

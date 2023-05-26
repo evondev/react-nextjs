@@ -1,20 +1,34 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import sea from "@public/sea-bay.jpeg";
+import { rgbDataURL } from "@/utils/generateBlur";
+import { shimmer, toBase64 } from "@/utils/shimmer";
 
 const ImageComponent = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [src, setSrc] = useState("/abc");
+  const handleImageError = () => {
+    setSrc(
+      "https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+    );
+  };
   return (
     <>
       {/* <img src="/sea-bay.jpeg" alt="sea-bay" /> */}
       <div className="flex items-center gap-10">
         <div className="relative flex-1 h-[600px]">
           <Image
-            src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1452&q=80"
+            src={src}
             fill
             alt="sea"
-            className="object-cover"
+            // className={`object-cover ${isLoaded ? "" : "blur"}`}
+            // onLoadingComplete={() => setIsLoaded(true)}
             placeholder="blur"
-            blurDataURL=""
+            blurDataURL={rgbDataURL(104, 32, 203)}
+            onError={handleImageError}
+            // blurDataURL={`data:image/svg+xml;base64,${toBase64(
+            //   shimmer(700, 600)
+            // )}`}
           ></Image>
         </div>
         <div className="relative flex-1 h-[600px]">

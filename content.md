@@ -27,6 +27,8 @@
 - Cách responsive hình ảnh với fill và lưu ý
 - Tìm hiểu srcset và sizes trong next/image
 
+# next/head
+
 # next/auth
 
 # next api
