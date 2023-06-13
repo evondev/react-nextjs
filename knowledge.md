@@ -24,4 +24,8 @@
 - onLoadingComplete: Chạy khi ảnh đã load xong rồi
 - onError: Chạy khi tấm ảnh bị lỗi không load được thì chúng ta có thể thiết lập 1 tấm ảnh mặc định gì đó
 - blurDataURL: Có thể dùng các hàm từ NextJS cung cấp để tối ưu hóa tốc độ tải trang, nếu yêu cầu đơn giản thì có thể dùng CSS blur và hàm onLoadingComplete để xử lý cho nó đẹp về UI
--
+
+# data fetching
+
+- client-side rendering
+- server-side rendering: SEO

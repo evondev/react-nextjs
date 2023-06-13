@@ -1,4 +1,4 @@
-export const metadata = {
+const metadata = {
   title: "Real Estate Admin management UI kit",
   description: "My App Description",
   image:
@@ -6,3 +6,5 @@ export const metadata = {
   keywords: "my, app, keywords",
   url: "https://myapp.com",
 };
+const API_URL = "http://localhost:3000/api";
+export { API_URL, metadata };

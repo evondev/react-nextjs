@@ -1,8 +1,28 @@
 import { LayoutMain } from "@/components/layout";
+import { API_URL } from "@/config";
 import PropertyItem from "@/modules/property/PropertyItem";
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 
 const PropertyPage = () => {
+  const [data, setData] = React.useState<any[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<any>(null);
+  console.log("PropertyPage ~ data:", data);
+  useEffect(() => {
+    async function fetchingProperties() {
+      setLoading(true);
+      try {
+        const res = await axios.get(`${API_URL}/property2`);
+        if (res.status === 200) setData(res.data);
+      } catch (error) {
+        console.log("fetchingProperties ~ error:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchingProperties();
+  }, []);
   return (
     <LayoutMain>
       <div className="flex items-center justify-between mb-5">
@@ -19,10 +39,10 @@ const PropertyPage = () => {
           aria-label="list"
           className="grid grid-cols-2 gap-x-16 gap-y-6 mb-9"
         >
-          {Array(10)
-            .fill(0)
-            .map((item, index) => (
-              <PropertyItem key={index}></PropertyItem>
+          {data &&
+            data.length > 0 &&
+            data.map((item, index) => (
+              <PropertyItem item={item} key={index}></PropertyItem>
             ))}
         </div>
         <div

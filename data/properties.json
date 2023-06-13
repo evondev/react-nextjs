@@ -2,11 +2,11 @@
   {
     "id": 1,
     "title": "Metro Jayakarta Hotel & Spa",
-    "address": "North Carolina, USA",
+    "address": "North NewYork, USA",
     "info": {
-      "beds": 4,
-      "baths": 2,
-      "area": "28M"
+      "beds": 3,
+      "baths": 1,
+      "area": "38M"
     },
     "status": "sale",
     "type": "apartment",
