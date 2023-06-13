@@ -5,15 +5,14 @@ import { getProperties } from "@/store/property.service";
 import { PropertyItemData } from "@/types/property.types";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Link from "next/link";
 import React, { useEffect } from "react";
 
 const PropertyPage = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["properties"],
     queryFn: () => getProperties(),
-    refetchOnWindowFocus: false,
-    cacheTime: 24 * 10 * 60 * 60 * 1000, // 1 day
-    staleTime: 24 * 5 * 60 * 60 * 1000, // 1/2 day
+    staleTime: 1000 * 60 * 1,
   });
   const properties = data;
   return (
@@ -22,9 +21,12 @@ const PropertyPage = () => {
         <h1 className="font-bold text-[25px] text-primaryText">
           Property List
         </h1>
-        <button className="flex items-center justify-center px-5 py-3 text-white bg-primary text-sm font-medium rounded-[10px] leading-normal">
+        <Link
+          href="/property/create"
+          className="flex items-center justify-center px-5 py-3 text-white bg-primary text-sm font-medium rounded-[10px] leading-normal"
+        >
           + Add Property
-        </button>
+        </Link>
       </div>
       <div className="p-5 bg-white rounded-2xl">
         <div aria-label="filter"></div>

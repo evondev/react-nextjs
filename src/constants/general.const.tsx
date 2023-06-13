@@ -17,7 +17,7 @@ export const sidebarLinks: TSidebarLink[] = [
   {
     title: "Property",
     icon: <IconBuilding />,
-    path: "/property",
+    path: "/properties",
   },
   {
     title: "Agent",

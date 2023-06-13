@@ -22,6 +22,7 @@ const PropertyItem = ({ item }: PropertyItemProps) => {
         width={200}
         height={150}
         className="object-cover rounded-xl"
+        priority
       ></Image>
       <div className="flex-1">
         <span className="inline-block text-xs font-semibold text-primary py-2 px-[10px] rounded-[5px] bg-secondary mb-2">

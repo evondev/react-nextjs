@@ -10,7 +10,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const newData = req.body;
 
-    jsonData.push(newData);
+    jsonData.push({
+      id: jsonData.length + 1,
+      ...newData,
+    });
 
     fs.writeFileSync(filePath, JSON.stringify(jsonData));
 
