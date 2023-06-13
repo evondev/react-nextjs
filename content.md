@@ -29,6 +29,12 @@
 
 # next/head
 
+# fetching
+
+- Giải thích client side và server side
+- fetching từ local json
+- fetching từ client-side
+
 # next/auth
 
 # next api
