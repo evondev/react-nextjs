@@ -1,21 +1,23 @@
-/* eslint-disable @next/next/no-img-element */
+import capitalizeStr from "@/utils/toCapitalize";
+import dynamic from "next/dynamic";
 import HeadContent from "@/components/HeadContent";
+import Image from "next/image";
+import React from "react";
 import { Button } from "@/components/button";
+import { getProperty } from "@/store/property.service";
+import { Spinner } from "@/components/loading";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+/* eslint-disable @next/next/no-img-element */
 import {
   IconBeds,
   IconCall,
   IconMessage,
   IconRating,
 } from "@/components/icons";
-import { Spinner } from "@/components/loading";
-import { getProperty } from "@/store/property.service";
-import { useQuery } from "@tanstack/react-query";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import React from "react";
+import Link from "next/link";
 
-function renderFacilityIcon(name: string): React.ReactNode {
+function renderFacilityIcon(item: any): React.ReactNode {
   // switch (name) {
   //   case "Beds": {
   //     return <IconBeds></IconBeds>;
@@ -23,10 +25,19 @@ function renderFacilityIcon(name: string): React.ReactNode {
   //   default:
   //     return <></>;
   // }
-  const Icon = dynamic(
-    () => import(`../../components/icons/Icon${name.replace(/ /, "")}`)
+  const [name, count] = item;
+  const newName = capitalizeStr(name, "-").replace(/ /g, "");
+  const Icon = dynamic(() => import(`../../components/icons/Icon${newName}`));
+  return (
+    <>
+      <span>
+        <Icon></Icon>
+      </span>
+      <span className="text-sm font-medium">
+        {count} {newName}
+      </span>
+    </>
   );
-  return <Icon></Icon>;
 }
 const PropertyDetails = () => {
   const router = useRouter();
@@ -39,7 +50,7 @@ const PropertyDetails = () => {
   });
   if (!data || error) return null;
   if (isLoading) return <Spinner></Spinner>;
-  const facilities = Object.entries(data.info || {});
+  const facilities = Object.entries(data.facility || {});
   const agent = data.agent;
   return (
     <>
@@ -49,7 +60,7 @@ const PropertyDetails = () => {
       ></HeadContent>
       <div className="p-5 bg-grayfc rounded-2xl">
         <h2 className="flex items-center gap-5 mb-6 text-xl font-medium">
-          <span>
+          <Link href="/properties">
             <svg
               width="9"
               height="16"
@@ -64,7 +75,7 @@ const PropertyDetails = () => {
                 fill="#11142D"
               />
             </svg>
-          </span>
+          </Link>
           Details
         </h2>
         <div className="grid grid-cols-[2fr_1fr] gap-6">
@@ -133,10 +144,7 @@ const PropertyDetails = () => {
                 {facilities.length > 0 &&
                   facilities.map((item, index) => (
                     <div className="flex items-center gap-1" key={index}>
-                      <span>{renderFacilityIcon(item[0])}</span>
-                      <span className="text-sm font-medium">
-                        {item[1]} {item[0]}
-                      </span>
+                      {renderFacilityIcon(item)}
                     </div>
                   ))}
               </div>

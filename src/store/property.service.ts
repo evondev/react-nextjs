@@ -26,7 +26,9 @@ const example = {
     properties: 10,
   },
 };
-export async function getProperties() {
+export async function getProperties(): Promise<
+  PropertyItemData[] | null | undefined
+> {
   try {
     const response = await axios.get(`${API_URL}/property`);
     if (response.status === 200) {

@@ -2,20 +2,19 @@ export interface PropertyItemData {
   id?: number;
   title?: string;
   address?: string;
-  info?: PropertyInfo;
+  facility?: PropertyFacility;
   status?: string;
   type?: string;
   price?: number;
   image?: string[];
   country?: string;
-  facility?: string[];
   description?: string;
   rating?: number;
   state?: string;
   agent?: PropertyAgent;
 }
 
-export interface PropertyInfo {
+export interface PropertyFacility {
   beds?: number;
   baths?: number;
   area?: string;
