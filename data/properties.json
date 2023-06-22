@@ -4,9 +4,9 @@
     "title": "Metro Jayakarta Hotel & Spa",
     "address": "North NewYork, USA",
     "info": {
-      "beds": 1,
-      "baths": 1,
-      "area": "38M",
+      "Beds": 1,
+      "Baths": 1,
+      "Area": "38M",
       "Smooking Area": true,
       "Kitchen": true,
       "Balcony": true,
