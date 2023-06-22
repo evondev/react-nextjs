@@ -1,8 +1,25 @@
 import React from "react";
-
-const Spinner = () => {
+import { twMerge } from "tailwind-merge";
+const sizesClasses = {
+  sm: "w-5 h-5 border-2",
+  md: "w-8 h-8 border-4",
+  lg: "w-12 h-12 border-6",
+};
+const Spinner = ({
+  size = "sm",
+  className = "",
+}: {
+  size?: "sm" | "md" | "lg";
+  className?: string;
+}) => {
   return (
-    <div className="w-10 h-10 mx-auto border-4 rounded-full border-primary border-t-transparent animate-spin"></div>
+    <div
+      className={twMerge(
+        sizesClasses[size],
+        className,
+        "mx-auto rounded-full border-t-transparent border-b-transparent animate-spin"
+      )}
+    ></div>
   );
 };
 

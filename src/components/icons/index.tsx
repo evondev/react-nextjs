@@ -17,3 +17,4 @@ export { default as IconKitchen } from "./IconKitchen";
 export { default as IconBaths } from "./IconBaths";
 export { default as IconBalcony } from "./IconBalcony";
 export { default as IconParkingArea } from "./IconParkingArea";
+export { default as IconCall } from "./IconCall";

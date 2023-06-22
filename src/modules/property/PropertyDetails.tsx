@@ -1,7 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import HeadContent from "@/components/HeadContent";
 import { Button } from "@/components/button";
-import { IconBeds, IconRating } from "@/components/icons";
+import {
+  IconBeds,
+  IconCall,
+  IconMessage,
+  IconRating,
+} from "@/components/icons";
 import { Spinner } from "@/components/loading";
 import { getProperty } from "@/store/property.service";
 import { useQuery } from "@tanstack/react-query";
@@ -160,15 +165,33 @@ const PropertyDetails = () => {
                 {agent?.properties} Propertis
               </div>
               <div className="grid grid-cols-2 gap-5 mt-6">
-                <button>Message</button>
-                <button>Call</button>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="rounded-[5px] px-4"
+                >
+                  <IconMessage></IconMessage>
+                  <span>Message</span>
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="md"
+                  className="rounded-[5px] px-4"
+                >
+                  <IconCall></IconCall>
+                  <span>Call</span>
+                </Button>
               </div>
             </div>
             <div aria-label="map">
               <img src="/map.png" alt="" />
             </div>
             <div>
-              <Button className="w-full text-white rounded-lg bg-primary">
+              <Button
+                variant="primary"
+                className="w-full rounded-[10px] h-12"
+                size="lg"
+              >
                 Book Now
               </Button>
             </div>
