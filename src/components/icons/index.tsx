@@ -9,3 +9,5 @@ export { default as IconPerson } from "./IconPerson";
 export { default as IconLocation } from "./IconLocation";
 export { default as IconBeds } from "./IconBeds";
 export { default as IconCross } from "./IconCross";
+export { default as IconRating } from "./IconRating";
+export { default as IconWifi } from "./IconWifi";
