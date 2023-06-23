@@ -16,8 +16,9 @@ import {
   IconRating,
 } from "@/components/icons";
 import Link from "next/link";
+import { PropertyFacility } from "@/types/property.types";
 
-function renderFacilityIcon(item: any): React.ReactNode {
+function renderFacilityIcon(item: [string, any]): React.ReactNode {
   // switch (name) {
   //   case "Beds": {
   //     return <IconBeds></IconBeds>;
@@ -89,6 +90,8 @@ const PropertyDetails = () => {
                       fill
                       alt=""
                       className="object-cover w-full h-full rounded-lg"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
+                      priority
                     />
                   </div>
                 )}
@@ -100,6 +103,7 @@ const PropertyDetails = () => {
                         fill
                         alt=""
                         className="object-cover rounded-lg row-[1/2] h-full"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
                       />
                       {index === 1 && (
                         <div className="absolute inset-0 flex items-center justify-center text-lg font-medium text-white bg-black bg-opacity-50 rounded-lg overlay">
@@ -142,7 +146,7 @@ const PropertyDetails = () => {
               <h3 className="text-lg font-medium mb-7">Facillity</h3>
               <div className="grid grid-cols-4 gap-5 mb-6">
                 {facilities.length > 0 &&
-                  facilities.map((item, index) => (
+                  facilities.map((item: [string, any], index: number) => (
                     <div className="flex items-center gap-1" key={index}>
                       {renderFacilityIcon(item)}
                     </div>
@@ -165,6 +169,7 @@ const PropertyDetails = () => {
                   src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80"
                   className="object-cover mb-4 rounded-full"
                   alt=""
+                  sizes="10vw"
                 />
               </div>
               <h3 className="mb-2 text-lg font-semibold">{agent?.name}</h3>

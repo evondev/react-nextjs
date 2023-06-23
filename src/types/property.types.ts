@@ -18,6 +18,11 @@ export interface PropertyFacility {
   beds?: number;
   baths?: number;
   area?: string;
+  smooking?: boolean;
+  kitchen?: boolean;
+  balcony?: boolean;
+  wifi?: boolean;
+  parking?: boolean;
 }
 
 export interface PropertyAgent {
@@ -25,4 +30,5 @@ export interface PropertyAgent {
   phone?: string;
   address?: string;
   properties?: number;
+  avatar?: string;
 }

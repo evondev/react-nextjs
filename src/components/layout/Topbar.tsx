@@ -19,7 +19,13 @@ const TopBar = () => {
 function Logo({}) {
   return (
     <Link href="/" className="flex items-center gap-3">
-      <Image width={173} height={35} src="/logo-full.png " alt="Yariga" />
+      <Image
+        width={173}
+        height={35}
+        src="/logo-full.png"
+        priority
+        alt="Yariga"
+      />
     </Link>
   );
 }
@@ -50,6 +56,7 @@ function User({}) {
           width={40}
           height={40}
           className="object-cover w-10 h-10 rounded-full"
+          priority
         ></Image>
         <div className="flex flex-col">
           <h4 className="font-semibold">Hawkins Maru</h4>
