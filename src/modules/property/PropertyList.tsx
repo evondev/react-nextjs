@@ -5,10 +5,13 @@ import React, { useState } from "react";
 import PropertyItem, { PropertyItemLoading } from "./PropertyItem";
 import { Dropdown } from "@/components/dropdown";
 import { statusData } from "@/constants/general.const";
-import { TFilter } from "@/types/general.types";
+import { TFilter, TPropertyStatus } from "@/types/general.types";
 import { debounce } from "lodash";
 
 const PropertyList = () => {
+  const [selected, setSelected] = useState({
+    status: "Any Status",
+  });
   const [filter, setFilter] = useState<TFilter>({
     text: "",
     status: "",
@@ -17,10 +20,11 @@ const PropertyList = () => {
     state: "",
   });
   const { data, isLoading, error } = useQuery({
-    queryKey: ["properties", filter.text],
+    queryKey: ["properties", filter.text, filter.status],
     queryFn: () =>
       getProperties({
         text: filter.text,
+        status: filter.status,
       }),
     staleTime: 1000 * 60 * 5,
     cacheTime: 1000 * 60 * 10,
@@ -35,6 +39,17 @@ const PropertyList = () => {
     },
     500
   );
+  const handleFilterByStatus = (value: TPropertyStatus) => {
+    setFilter({
+      ...filter,
+      status: value,
+    });
+    const foundStatus = statusData.find((item) => item.value === value);
+    setSelected({
+      ...selected,
+      status: value ? foundStatus?.label || "" : "Any Status",
+    });
+  };
   if (error) return null;
 
   return (
@@ -60,7 +75,11 @@ const PropertyList = () => {
             onChange={handleFilterProperty}
           />
         </div>
-        <Dropdown data={statusData}></Dropdown>
+        <Dropdown
+          selected={selected.status}
+          onClick={handleFilterByStatus}
+          data={statusData}
+        ></Dropdown>
         <Dropdown selected="Any Type"></Dropdown>
         <Dropdown selected="All Countries"></Dropdown>
         <Dropdown selected="All States"></Dropdown>

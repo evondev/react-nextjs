@@ -1,10 +1,10 @@
 import React from "react";
 import { Menu } from "@headlessui/react";
-import { TDropdownData } from "@/types/general.types";
+import { TDropdownData, TPropertyStatus } from "@/types/general.types";
 interface DropdownProps {
   selected?: string;
   data?: TDropdownData[];
-  onClick?: (value: string) => void;
+  onClick?: (value: TPropertyStatus) => void;
 }
 const Dropdown = ({
   selected = "Any Status",
@@ -46,7 +46,7 @@ const Dropdown = ({
                   key={item.value}
                   as="div"
                   className="p-2 text-sm font-medium rounded-lg cursor-pointer text-gray80 hover:text-grayfc hover:bg-primary"
-                  onClick={() => onClick?.(item.value)}
+                  onClick={() => onClick?.(item.value as any)}
                 >
                   {item.label}
                 </Menu.Item>

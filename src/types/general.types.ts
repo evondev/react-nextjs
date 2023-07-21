@@ -7,9 +7,10 @@ export type TDropdownData = {
   value: string;
   label: string;
 };
+export type TPropertyStatus = "sale" | "rent" | "";
 export type TFilter = {
   text?: string;
-  status?: string;
+  status: TPropertyStatus;
   country?: string;
   type?: string;
   state?: string;
