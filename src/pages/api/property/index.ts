@@ -3,10 +3,18 @@ import properties from "@data/properties.json";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   let filteredData = properties;
-  const params = req.query;
+  const params: {
+    text?: string;
+    state?: string;
+    status?: string;
+    type?: string;
+    country?: string;
+    offset?: string;
+    limit?: string;
+  } = req.query;
   const { text, state, status, type, country, offset, limit } = params;
 
-  if (text && typeof text === "string") {
+  if (text) {
     filteredData = filteredData.filter((item) => {
       return (
         item.title.toLowerCase().includes(text.toLowerCase() as string) ||
