@@ -33,7 +33,7 @@ const Dropdown = ({
                 <Menu.Item
                   key={item.value}
                   as="div"
-                  className="p-2 text-sm font-medium rounded-lg cursor-pointer text-gray80 hover:text-grayfc hover:bg-primary"
+                  className="py-2 px-2.5 text-sm font-normal rounded-lg cursor-pointer text-gray80 hover:text-grayfc hover:bg-primary"
                   onClick={() => onClick?.(item.value as any)}
                 >
                   {item.label}

@@ -46,7 +46,8 @@ const PropertyDetails = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["properties", id],
     queryFn: () => getProperty(id),
-    staleTime: 1000 * 60 * 1,
+    staleTime: 1000 * 60 * 5,
+    cacheTime: 1000 * 60 * 10,
     enabled: !!id,
   });
   if (!data || error) return null;
@@ -96,7 +97,7 @@ const PropertyDetails = () => {
                   </div>
                 )}
                 {data.image &&
-                  data.image.slice(1, 3).map((item, index) => (
+                  data.image.slice(1, 3).map((item: string, index: number) => (
                     <div className="relative" key={index}>
                       <Image
                         src={item}

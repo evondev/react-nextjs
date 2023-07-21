@@ -21,8 +21,8 @@ const PropertyItem = ({ item }: PropertyItemProps) => {
         src={item.image && item.image.length > 0 ? item.image[0] : ""}
         alt="setup"
         width={200}
-        height={150}
-        className="object-cover rounded-xl h-[150px]"
+        height={125}
+        className="object-cover rounded-xl h-[125px]"
         priority
       ></Image>
       <div className="flex-1">

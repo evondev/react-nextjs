@@ -11,7 +11,10 @@ import { useQuery } from "@tanstack/react-query";
 
 const PropertyList = () => {
   const [selected, setSelected] = useState({
-    status: "Any Status",
+    statusText: "Any Status",
+    typeText: "Any Type",
+    countryText: "All Countries",
+    stateText: "All States",
   });
   const [filter, setFilter] = useState<TFilter>({
     text: "",
@@ -48,7 +51,7 @@ const PropertyList = () => {
     const foundStatus = statusData.find((item) => item.value === value);
     setSelected({
       ...selected,
-      status: value ? foundStatus?.label || "" : "Any Status",
+      statusText: value ? foundStatus?.label || "" : "Any Status",
     });
   };
   if (error) return null;
@@ -66,7 +69,7 @@ const PropertyList = () => {
           />
         </div>
         <Dropdown
-          selected={selected.status}
+          selected={selected.statusText}
           onClick={handleFilterByStatus}
           data={statusData}
         ></Dropdown>
