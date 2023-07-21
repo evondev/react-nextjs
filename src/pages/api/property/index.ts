@@ -4,13 +4,13 @@ import properties from "@data/properties.json";
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   let filteredData = properties;
   const params = req.query;
-  const { filter, state, status, type, offset, limit } = params;
+  const { text, state, status, type, offset, limit } = params;
 
-  if (filter) {
+  if (text && typeof text === "string") {
     filteredData = filteredData.filter((item) => {
       return (
-        item.title.toLowerCase().includes(filter as string) ||
-        item.address.toLowerCase().includes(filter as string)
+        item.title.toLowerCase().includes(text.toLowerCase() as string) ||
+        item.address.toLowerCase().includes(text.toLowerCase() as string)
       );
     });
   }

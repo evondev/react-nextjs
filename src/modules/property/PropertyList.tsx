@@ -5,28 +5,37 @@ import React, { useState } from "react";
 import PropertyItem, { PropertyItemLoading } from "./PropertyItem";
 import { Dropdown } from "@/components/dropdown";
 import { statusData } from "@/constants/general.const";
-type Filter = {
-  address: string;
-  status: string;
-  country: string;
-  type: string;
-  state: string;
-};
+import { TFilter } from "@/types/general.types";
+import { debounce } from "lodash";
+
 const PropertyList = () => {
-  const [filter, setFilter] = useState<Filter>({
-    address: "",
+  const [filter, setFilter] = useState<TFilter>({
+    text: "",
     status: "",
     country: "",
     type: "",
     state: "",
   });
   const { data, isLoading, error } = useQuery({
-    queryKey: ["properties"],
-    queryFn: () => getProperties(),
-    staleTime: 1000 * 60 * 1,
+    queryKey: ["properties", filter.text],
+    queryFn: () =>
+      getProperties({
+        text: filter.text,
+      }),
+    staleTime: 1000 * 60 * 5,
+    cacheTime: 1000 * 60 * 10,
   });
   const properties = data;
-  if (error || properties?.length === 0) return null;
+  const handleFilterProperty = debounce(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFilter({
+        ...filter,
+        text: e.target.value,
+      });
+    },
+    500
+  );
+  if (error) return null;
 
   return (
     <div className="p-5 bg-white rounded-2xl">
@@ -48,6 +57,7 @@ const PropertyList = () => {
             type="text"
             className="w-full text-xs font-medium bg-transparent outline-none"
             placeholder="Enter an address, city or Zip code"
+            onChange={handleFilterProperty}
           />
         </div>
         <Dropdown data={statusData}></Dropdown>

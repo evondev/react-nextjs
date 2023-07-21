@@ -1,4 +1,5 @@
 import { API_URL } from "@/config";
+import { TFilter } from "@/types/general.types";
 import { PropertyItemData } from "@/types/property.types";
 import axios from "axios";
 const example = {
@@ -26,11 +27,13 @@ const example = {
     properties: 10,
   },
 };
-export async function getProperties(): Promise<
-  PropertyItemData[] | null | undefined
-> {
+export async function getProperties(
+  params?: TFilter
+): Promise<PropertyItemData[] | null | undefined> {
   try {
-    const response = await axios.get(`${API_URL}/property`);
+    const response = await axios.get(`${API_URL}/property`, {
+      params,
+    });
     if (response.status === 200) {
       return response.data.properties;
     }
