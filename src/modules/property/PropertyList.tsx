@@ -5,8 +5,15 @@ import { Dropdown } from "@/components/dropdown";
 import { getProperties } from "@/store/property.service";
 import { IconSearch, IconTune } from "@/components/icons";
 import { PropertyItemData } from "@/types/property.types";
-import { statusData } from "@/constants/general.const";
-import { TFilter, TPropertyStatus } from "@/types/general.types";
+import {
+  propertyStatusData,
+  propertyTypeData,
+} from "@/constants/general.const";
+import {
+  TFilter,
+  TPropertyStatusData,
+  TPropertyTypeData,
+} from "@/types/general.types";
 import { useQuery } from "@tanstack/react-query";
 
 const PropertyList = () => {
@@ -24,11 +31,12 @@ const PropertyList = () => {
     state: "",
   });
   const { data, isLoading, error } = useQuery({
-    queryKey: ["properties", filter.text, filter.status],
+    queryKey: ["properties", filter.text, filter.status, filter.type],
     queryFn: () =>
       getProperties({
         text: filter.text,
         status: filter.status,
+        type: filter.type,
       }),
     staleTime: 1000 * 60 * 5,
     cacheTime: 1000 * 60 * 10,
@@ -43,15 +51,21 @@ const PropertyList = () => {
     },
     500
   );
-  const handleFilterByStatus = (value: TPropertyStatus) => {
+  const handleFilterByStatus = (value: TPropertyStatusData["value"]) => {
     setFilter({
       ...filter,
       status: value,
     });
-    const foundStatus = statusData.find((item) => item.value === value);
+    const foundStatus = propertyStatusData.find((item) => item.value === value);
     setSelected({
       ...selected,
       statusText: value ? foundStatus?.label || "" : "Any Status",
+    });
+  };
+  const handleFilterByType = (value: TPropertyTypeData["value"]) => {
+    setFilter({
+      ...filter,
+      type: value,
     });
   };
   if (error) return null;
@@ -71,9 +85,13 @@ const PropertyList = () => {
         <Dropdown
           selected={selected.statusText}
           onClick={handleFilterByStatus}
-          data={statusData}
+          data={propertyStatusData}
         ></Dropdown>
-        <Dropdown selected="Any Type"></Dropdown>
+        <Dropdown
+          selected={selected.typeText}
+          onClick={handleFilterByType}
+          data={propertyTypeData}
+        ></Dropdown>
         <Dropdown selected="All Countries"></Dropdown>
         <Dropdown selected="All States"></Dropdown>
         <button className="flex items-center gap-2.5 rounded-lg bg-grayf7 p-2 text-xs font-medium text-gray80">

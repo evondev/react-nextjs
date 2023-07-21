@@ -7,11 +7,16 @@ export type TDropdownData = {
   value: string;
   label: string;
 };
-export type TPropertyStatus = "sale" | "rent" | "";
+export type TPropertyStatusData = Omit<TDropdownData, "value"> & {
+  value: "" | "sale" | "rent";
+};
+export type TPropertyTypeData = Omit<TDropdownData, "value"> & {
+  value: "" | "apartments" | "houses" | "commercial" | "garages" | "lots";
+};
 export type TFilter = {
   text?: string;
-  status: TPropertyStatus;
+  status: TPropertyStatusData["value"];
   country?: string;
-  type?: string;
+  type?: TPropertyTypeData["value"];
   state?: string;
 };
