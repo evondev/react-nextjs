@@ -18,3 +18,5 @@ export { default as IconBaths } from "./IconBaths";
 export { default as IconBalcony } from "./IconBalcony";
 export { default as IconParkingArea } from "./IconParkingArea";
 export { default as IconCall } from "./IconCall";
+export { default as IconCaretDown } from "./IconCaretDown";
+export { default as IconTune } from "./IconTune";

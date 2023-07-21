@@ -4,7 +4,7 @@ import properties from "@data/properties.json";
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   let filteredData = properties;
   const params = req.query;
-  const { text, state, status, type, offset, limit } = params;
+  const { text, state, status, type, country, offset, limit } = params;
 
   if (text && typeof text === "string") {
     filteredData = filteredData.filter((item) => {
@@ -30,6 +30,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (type) {
     filteredData = filteredData.filter((item) => {
       return item.type === type;
+    });
+  }
+
+  if (country) {
+    filteredData = filteredData.filter((item) => {
+      return item.country === country;
     });
   }
 
