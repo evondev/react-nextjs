@@ -55,6 +55,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   res.status(200).json({
     properties: filteredData,
-    total: filteredData.length,
+    total: properties.length,
   });
 }

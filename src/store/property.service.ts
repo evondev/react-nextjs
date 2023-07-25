@@ -27,17 +27,27 @@ const example = {
     properties: 10,
   },
 };
-export async function getProperties(
-  params?: TFilter
-): Promise<PropertyItemData[] | null | undefined> {
+export async function getProperties(params?: TFilter): Promise<
+  | {
+      properties: PropertyItemData[] | null | undefined;
+      total: number;
+    }
+  | undefined
+> {
   try {
     const response = await axios.get(`${API_URL}/property`, {
       params,
     });
     if (response.status === 200) {
-      return response.data.properties;
+      return {
+        properties: response.data.properties,
+        total: response.data.total,
+      };
     }
-    return [];
+    return {
+      properties: [],
+      total: 0,
+    };
   } catch (error) {
     console.log("getProperties ~ error:", error);
   }
