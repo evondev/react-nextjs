@@ -17,6 +17,8 @@ import {
 } from "@/types/general.types";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/button";
+import { Menu } from "@headlessui/react";
+import { DropdownItem } from "@/components/dropdown/Dropdown";
 
 const PropertyListLoadMore = () => {
   const [selected, setSelected] = useState({
@@ -90,7 +92,6 @@ const PropertyListLoadMore = () => {
   const handleLoadMore = () => {
     hasNextPage && fetchNextPage();
   };
-  console.log(data.pages.flat());
   if (error) return null;
 
   return (
@@ -107,13 +108,28 @@ const PropertyListLoadMore = () => {
         </div>
         <Dropdown
           selected={selected.statusText}
-          onClick={handleFilterByStatus}
+          // onClick={handleFilterByStatus}
           data={propertyStatusData}
+          renderItems={(item) => (
+            <DropdownItem
+              key={item.value}
+              onClick={() => handleFilterByStatus(item.value)}
+            >
+              {item.label}
+            </DropdownItem>
+          )}
         ></Dropdown>
         <Dropdown
           selected={selected.typeText}
-          onClick={handleFilterByType}
           data={propertyTypeData}
+          renderItems={(item) => (
+            <DropdownItem
+              key={item.value}
+              onClick={() => handleFilterByType(item.value)}
+            >
+              {item.label}
+            </DropdownItem>
+          )}
         ></Dropdown>
         <Dropdown selected="All Countries"></Dropdown>
         <Dropdown selected="All States"></Dropdown>
