@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { LayoutMain } from "@/components/layout";
 import PropertyList from "@/modules/property/PropertyList";
+import PropertyListLoadMore from "@/modules/property/PropertyListLoadMore";
 
 const PropertyPage = () => {
   return (
@@ -17,7 +18,7 @@ const PropertyPage = () => {
           + Add Property
         </Link>
       </div>
-      <PropertyList></PropertyList>
+      <PropertyListLoadMore></PropertyListLoadMore>
     </LayoutMain>
   );
 };

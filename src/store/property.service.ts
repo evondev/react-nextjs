@@ -31,6 +31,8 @@ export async function getProperties(params?: TFilter): Promise<
   | {
       properties: PropertyItemData[] | null | undefined;
       total: number;
+      offset: number;
+      limit: number;
     }
   | undefined
 > {
@@ -42,11 +44,15 @@ export async function getProperties(params?: TFilter): Promise<
       return {
         properties: response.data.properties,
         total: response.data.total,
+        offset: params?.offset || 0,
+        limit: params?.limit || 0,
       };
     }
     return {
       properties: [],
       total: 0,
+      offset: 0,
+      limit: 0,
     };
   } catch (error) {
     console.log("getProperties ~ error:", error);
