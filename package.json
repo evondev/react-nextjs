@@ -11,6 +11,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.23.2",
     "@headlessui/react": "^1.7.15",
     "@storybook/cli": "^7.0.2",
     "@storybook/nextjs": "^7.0.2",

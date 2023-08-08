@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { IconNotification } from "../icons";
 import { IconSearch } from "../icons";
+import { UserButton } from "@clerk/nextjs";
 
 const TopBar = () => {
   return (
@@ -50,14 +51,7 @@ function User({}) {
         <IconNotification></IconNotification>
       </span>
       <div className="flex items-center flex-shrink-0 gap-[10px]">
-        <Image
-          src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1452&q=80"
-          alt="mac"
-          width={40}
-          height={40}
-          className="object-cover w-10 h-10 rounded-full"
-          priority
-        ></Image>
+        <UserButton afterSignOutUrl="/" />
         <div className="flex flex-col">
           <h4 className="font-semibold">Hawkins Maru</h4>
           <span className="text-gray80">Company Manager</span>

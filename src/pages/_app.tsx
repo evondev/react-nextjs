@@ -8,12 +8,15 @@ const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
+import { ClerkProvider } from "@clerk/nextjs";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <div className={manrope.className}>
         <Meta></Meta>
-        <Component {...pageProps} />
+        <ClerkProvider {...pageProps}>
+          <Component {...pageProps} />
+        </ClerkProvider>
       </div>
     </QueryClientProvider>
   );
