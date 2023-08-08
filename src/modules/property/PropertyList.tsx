@@ -91,7 +91,7 @@ const PropertyList = () => {
             onChange={handleFilterProperty}
           />
         </div>
-        <Dropdown
+        {/* <Dropdown
           selected={selected.statusText}
           onClick={handleFilterByStatus}
           data={propertyStatusData}
@@ -100,7 +100,7 @@ const PropertyList = () => {
           selected={selected.typeText}
           onClick={handleFilterByType}
           data={propertyTypeData}
-        ></Dropdown>
+        ></Dropdown> */}
         <Dropdown selected="All Countries"></Dropdown>
         <Dropdown selected="All States"></Dropdown>
         <button className="flex items-center gap-2.5 rounded-lg bg-grayf7 p-2 text-xs font-medium text-gray80">

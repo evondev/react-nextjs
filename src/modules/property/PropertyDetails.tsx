@@ -40,7 +40,8 @@ function renderFacilityIcon(item: [string, any]): React.ReactNode {
     </>
   );
 }
-const PropertyDetails = () => {
+
+const PropertyDetails = (posts: any) => {
   const router = useRouter();
   const id = parseInt(router.query.id as string);
   const { data, isLoading, error } = useQuery({
@@ -49,6 +50,7 @@ const PropertyDetails = () => {
     staleTime: 1000 * 60 * 5,
     cacheTime: 1000 * 60 * 10,
     enabled: !!id,
+    initialData: posts?.posts || {},
   });
   if (!data || error) return null;
   if (isLoading) return <Spinner></Spinner>;
